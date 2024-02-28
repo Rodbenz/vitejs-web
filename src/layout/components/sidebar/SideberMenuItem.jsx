@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Stack } from '@mui/material';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 SideberMenuItem.propTypes = {
     isOpen: PropTypes.bool, // Change the type accordingly
@@ -11,7 +12,7 @@ SideberMenuItem.propTypes = {
 
 
 export default function SideberMenuItem(props) {
-    const [open, setOpen] = React.useState(true);
+    const [openSubmenu, setOpenSubmenu] = React.useState(true);
     const menu = useSelector((state) => state?.user_menu?.user_menu)
     const navigate = useNavigate();
     const [menuItems, setMenuItems] = React.useState([]);
@@ -65,14 +66,33 @@ export default function SideberMenuItem(props) {
                                         <i className={`${el.menu_icon} fs-3`}></i>
                                     </span>
                                     <div>
-                                        <label className={`text-base font-medium flex-1 absolute pt-1  ${props.isOpen ? `visible`:`invisible`}`}>
+                                        <label className={`text-base font-medium flex-1 absolute pt-1  ${props.isOpen ? `visible` : `invisible`}`}>
                                             {el.menu_name}
                                         </label>
                                     </div>
                                 </Stack>
                             </li>
                         ) : (
-<></>
+                            <li className={`text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-gray-200 rounded-md  mr-5 mt-2`} >
+                                <Stack direction={'row'} spacing={18}>
+                                    <div>
+                                        <Stack direction={'row'} spacing={1}>
+                                            <span className='text-2xl block float-left'>
+                                                {/* {el.icon} */}
+                                                <i className={`${el.menu_icon} fs-3`}></i>
+                                            </span>
+                                            <div>
+                                                <label className={`text-base font-medium flex-1 absolute pt-1  ${props.isOpen ? `visible` : `invisible`}`}>
+                                                    {el.menu_name}
+                                                </label>
+                                            </div>
+                                        </Stack>
+                                    </div>
+                                    <div className={`${props.isOpen ? `visible` : `invisible`}`}>
+                                        <ExpandMoreIcon />
+                                    </div>
+                                </Stack>
+                            </li>
                         )}
                     </div>
                 ))}
