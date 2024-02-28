@@ -7,13 +7,13 @@ export default function Example() {
     <Routes>
       <Route element={<Outlet />}>
         <Route
-          path="Example"
+          path="example"
           element={
             <ComponenExample/>
           }
         />
       </Route>
-      <Route index element={<Navigate to="/apps/Example" />} />
+      <Route index element={<Navigate to="/apps/example" />} />
     </Routes>
   );
 }

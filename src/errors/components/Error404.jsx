@@ -29,7 +29,7 @@ const Error404 = () => {
 
       {/* begin::Link */}
       <div className='mb-0'>
-        <Link to='/Home' className='btn btn-sm btn-primary'>
+        <Link to='/home' className='btn btn-sm btn-primary'>
           Return Home
         </Link>
       </div>

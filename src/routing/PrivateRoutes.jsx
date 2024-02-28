@@ -8,8 +8,8 @@ export default function PrivateRoutes() {
         <Routes>
             <Route element={<MasterLayout />}>
                 {/* Redirect to Dashboard after success login/registartion */}
-                <Route path='auth/*' element={<Navigate to='/Home' />} />
-                <Route path='Home' element={<Home />} />
+                <Route path='auth/*' element={<Navigate to='/home' />} />
+                <Route path='home' element={<Home />} />
                 {/* Pages */}
                 {/* <Route path='dashboard' element={<DashboardWrapper />} />
                     <Route path='builder' element={<BuilderPageWrapper />} />
@@ -22,7 +22,7 @@ export default function PrivateRoutes() {
                     }
                 />
 
-                {/* <Route path='*' element={<Navigate to='/error/404' />} /> */}
+                <Route path='*' element={<Navigate to='/error/404' />} />
             </Route>
         </Routes>
     )
