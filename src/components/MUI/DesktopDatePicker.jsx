@@ -25,7 +25,7 @@ export default function BasicDateTimePicker(props) {
   };
 
   return (
-    <div style={{ width: '100%', height: '10px' }}>
+    <div style={{ width: '100%' }}>
       <label htmlFor="" className={`${props.required} fs-6 font-bold`}>{props.labelName}</label>
       <LocalizationProvider dateAdapter={OverwriteAdapterDayjs} adapterLocale='th' dateFormats={{ monthAndYear: "MMMM BBBB" }}>
         <DesktopDatePicker

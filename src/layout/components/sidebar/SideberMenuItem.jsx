@@ -3,6 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { Stack } from '@mui/material';
 
 SideberMenuItem.propTypes = {
     isOpen: PropTypes.bool, // Change the type accordingly
@@ -56,15 +57,23 @@ export default function SideberMenuItem(props) {
             <ul className='ml-[-10px]'>
                 {menuItems.map((el, index) => (
                     <div key={index} >
-                        <li className={`text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-gray-200 rounded-md  mr-5 mt-2`} onClick={() => handleClick(el.menu_url)}>
-                            <span className='text-2xl block float-left'>
-                                {/* {el.icon} */}
-                                <i className={`${el.menu_icon} fs-3`}></i>
-                            </span>
-                            <span className={`text-base font-medium flex-1 duration-200 ${!props.isOpen && `hidden`}`}>
-                                {el.menu_name}
-                            </span>
-                        </li>
+                        {el?.submenu.length == 0 ? (
+                            <li className={`text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-gray-200 rounded-md  mr-5 mt-2`} onClick={() => handleClick(el.menu_url)}>
+                                <Stack direction={'row'} spacing={1}>
+                                    <span className='text-2xl block float-left'>
+                                        {/* {el.icon} */}
+                                        <i className={`${el.menu_icon} fs-3`}></i>
+                                    </span>
+                                    <div>
+                                        <label className={`text-base font-medium flex-1 absolute pt-1  ${props.isOpen ? `visible`:`invisible`}`}>
+                                            {el.menu_name}
+                                        </label>
+                                    </div>
+                                </Stack>
+                            </li>
+                        ) : (
+<></>
+                        )}
                     </div>
                 ))}
             </ul>
