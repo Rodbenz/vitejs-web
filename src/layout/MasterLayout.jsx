@@ -6,9 +6,15 @@ import Footer from './components/footer';
 
 export default function MasterLayout() {
     const [open, setOpen] = React.useState(false)
+    const [isHovered, setIsHovered] = React.useState(false);
+
+    const toggleHover = () => {
+        setIsHovered(!isHovered);
+    };
 
     const headleOpen = () => {
         setOpen(!open);
+        !open == false && setIsHovered(false)
     }
     return (
         <div
@@ -23,13 +29,13 @@ export default function MasterLayout() {
             >
                 <NavBar open={open} />
                 <div className='hidden sm:block'>
-                    <SideBar isOpen={open} headleOpen={headleOpen} />
+                    <SideBar isOpen={open} headleOpen={headleOpen} toggleHover={toggleHover} isHovered={isHovered} />
                 </div>
                 <div className={`${open ? `ml-0 sm:ml-72` : `ml-0 sm:ml-20`} pt-[6.5rem] pl-5 pr-5 duration-300`}>
                     <Outlet />
                 </div>
             </div>
-            <Footer isOpen={open}/>
+            <Footer isOpen={open} />
         </div>
     )
 }

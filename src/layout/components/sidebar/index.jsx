@@ -4,13 +4,14 @@ import SideberMenuItem from './SideberMenuItem';
 
 SideBar.propTypes = {
     headleOpen: PropTypes.func.isRequired, // Change the type accordingly
+    toggleHover: PropTypes.func.isRequired, // Change the type accordingly
     isOpen: PropTypes.bool, // Change the type accordingly
+    isHovered: PropTypes.bool, // Change the type accordingly
 };
 export default function SideBar(props) {
-
     return (
-        <div className='flex'>
-            <div className={`${props.isOpen ? `w-72` : `w-20`} fixed duration-300 h-screen bg-white border-1 z-20`}>
+        <div className='flex' >
+            <div className={`${props.isOpen ? `w-72` : `w-20`} fixed duration-300 h-screen bg-white border-1 z-20`} >
                 <div className='h-28'>
                     {props.isOpen ? (
                         <div className=' absolute cursor-pointer rounded-full -right-4 top-6 bg-white' onClick={props.headleOpen}>
@@ -22,7 +23,7 @@ export default function SideBar(props) {
                         </div>
                     )}
                     <div className='inline-flex'>
-                        {props.isOpen ? (
+                        {props.isOpen? (
                             <img
                                 alt="Logo"
                                 src="http://trr-web.trrgroup.com/storage/INTRANET/DMZ/Asset/Logo/Logo_TRR_Lin_TH.png"
