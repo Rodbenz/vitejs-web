@@ -27,8 +27,8 @@ export default function SideberMenuItem(props) {
     };
 
     const handleClickMenu = (data) => {
-        setCheckMenu(data)
-        setOpenSubmenu(!openSubmenu)
+        setCheckMenu(data == checkMenu ? null : data)
+        setOpenSubmenu(data == checkMenu ? false : true)
     };
 
     const setSubMenu = () => {
