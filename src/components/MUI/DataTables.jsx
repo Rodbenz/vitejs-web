@@ -104,18 +104,18 @@ function EnhancedTableHead(props) {
                 </TableCell> */}
                 {headCells.map((headCell) => (
                     <TableCell
-                        key={headCell.id}
+                        key={headCell.columnName}
                         align={"center"}
                         padding={headCell.disablePadding ? 'none' : 'normal'}
-                        sortDirection={orderBy === headCell.id ? order : false}
+                        sortDirection={orderBy === headCell.columnName ? order : false}
                     >
                         <TableSortLabel
-                            active={orderBy === headCell.id}
-                            direction={orderBy === headCell.id ? order : 'asc'}
-                            onClick={createSortHandler(headCell.id)}
+                            active={orderBy === headCell.columnName}
+                            direction={orderBy === headCell.columnName ? order : 'asc'}
+                            onClick={createSortHandler(headCell.columnName)}
                         >
                             <label className={'text-sm font-bold'}>{headCell.label}</label>
-                            {orderBy === headCell.id ? (
+                            {orderBy === headCell.columnName ? (
                                 <Box component="span" sx={visuallyHidden}>
                                     {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
                                 </Box>
@@ -341,7 +341,7 @@ export default function EnhancedTable(props) {
                                             onClick={() => handleRowClick(index)}
                                         >
                                             {headCells?.map((column, index) => {
-                                                const value = row[column.id];
+                                                const value = row[column.columnName];
                                                 return (
                                                     <>
                                                         <TableCell key={index} align={column.numeric}>

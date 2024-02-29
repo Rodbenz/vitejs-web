@@ -4,90 +4,91 @@ import Paper from '@mui/material/Paper';
 import FullWidthTextField from '../../../components/MUI/FullWidthTextField';
 import DataTable from '../../../components/MUI/DataTables';
 import BasicDateTimePicker from './../../../components/MUI/DesktopDatePicker';
+import ActionManageCell from '../../../components/MUI/ActionManageCell';
+import UserActionsCell from './../../../components/metronic/UserActionsCell';
 
 export default function ComponenExample() {
     const headCells = [
         {
-            id: 'name',
+            columnName: 'ACTION',
+            numeric: 'center',
+            disablePadding: true,
+            label: 'จัดการ',
+            colWidth: 300
+        },
+        {
+            columnName: 'name',
             numeric: 'center',
             disablePadding: true,
             label: 'Dessert (100g serving)',
+            colWidth: 300
         },
         {
-            id: 'calories',
+            columnName: 'calories',
             numeric: 'center',
             disablePadding: false,
             label: 'Calories',
+            colWidth: 300
         },
         {
-            id: 'fat',
+            columnName: 'fat',
             numeric: 'center',
             disablePadding: false,
             label: 'Fat (g)',
+            colWidth: 300
         },
         {
-            id: 'carbs',
+            columnName: 'carbs',
             numeric: 'center',
             disablePadding: false,
             label: 'Carbs (g)',
+            colWidth: 300
         },
         {
-            id: 'protein',
+            columnName: 'protein',
             numeric: 'center',
             disablePadding: false,
             label: 'Protein (g)',
+            colWidth: 300
         },
     ];
 
-    function createData(id, name, calories, fat, carbs, protein) {
-        return {
-            id,
-            name,
-            calories,
-            fat,
-            carbs,
-            protein,
-        };
-    }
 
     const rows = [
-        createData(1, 'Cupcake', 305, 3.7, 67, 4.3),
-        createData(2, 'Donut', 452, 25.0, 51, 4.9),
-        createData(3, 'Eclair', 262, 16.0, 24, 6.0),
-        createData(4, 'Frozen yoghurt', 159, 6.0, 24, 4.0),
-        createData(5, 'Gingerbread', 356, 16.0, 49, 3.9),
-        createData(6, 'Honeycomb', 408, 3.2, 87, 6.5),
-        createData(7, 'Ice cream sandwich', 237, 9.0, 37, 4.3),
-        createData(8, 'Jelly Bean', 375, 0.0, 94, 0.0),
-        createData(9, 'KitKat', 518, 26.0, 65, 7.0),
-        createData(10, 'Lollipop', 392, 0.2, 98, 0.0),
-        createData(11, 'Marshmallow', 318, 0, 81, 2.0),
-        createData(12, 'Nougat', 360, 19.0, 9, 37.0),
-        createData(13, 'Oreo', 437, 18.0, 63, 4.0),
+        {
+            ACTION: (<ActionManageCell element={{ name: 'Cupcake', calories: 305, fat: 3.7, carbs: 67, protein: 4.3 }} />), name: 'Cupcake', calories: 305, fat: 3.7, carbs: 67, protein: 4.3
+        },
+        {
+            ACTION: (<ActionManageCell element={{ name: 'koy', calories: 305, fat: 3.7, carbs: 67, protein: 4.3 }} />), name: 'koy', calories: 305, fat: 3.7, carbs: 67, protein: 4.3
+        },
+        {
+            ACTION: (<ActionManageCell element={{ name: 'kuy', calories: 305, fat: 3.7, carbs: 67, protein: 4.3 }} />), name: 'kuy', calories: 305, fat: 3.7, carbs: 67, protein: 4.3
+        },
+
     ];
     return (
         <div>
             <Paper className={'mb-8'}>
                 <label htmlFor="" className='text-2xl font-bold py-1 px-5'>Example Component</label>
-               <div className='container py-5'>
-                <div className='row'>
-                    <div className='col-md-4'>
-                        <FullWidthTextField labelName={'TextField'} required={'required'} />
-                    </div>
-                    <div className='col-md-4'>
-                        <BasicDateTimePicker labelName='DateTimePicker' required={'required'}/>
-                    </div>
-                    <div className='col-md-4'>
-                        <FullWidthTextField labelName={'TextField'} required={'required'}/>
-                    </div>
-                    <div className='col-md-12'>
+                <div className='container py-5'>
+                    <div className='row'>
+                        <div className='col-md-4'>
+                            <FullWidthTextField labelName={'TextField'} required={'required'} />
+                        </div>
+                        <div className='col-md-4'>
+                            <BasicDateTimePicker labelName='DateTimePicker' required={'required'} />
+                        </div>
+                        <div className='col-md-4'>
+                            <FullWidthTextField labelName={'TextField'} required={'required'} />
+                        </div>
+                        <div className='col-md-12'>
 
-                    </div>
-                    <div className='col-md-12 py-9'>
-                        <DataTable tableName="TEST TABLE" headCells={headCells} rows={rows}/>
+                        </div>
+                        <div className='col-md-12 py-9'>
+                            <DataTable tableName="TEST TABLE" headCells={headCells} rows={rows} />
+                        </div>
                     </div>
                 </div>
-               </div>
             </Paper>
         </div>
     )

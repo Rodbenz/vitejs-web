@@ -3,11 +3,13 @@ import PropTypes from 'prop-types';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Divider from '@mui/material/Divider';
-import MenuList from '@mui/material/MenuList';
 import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
 import { useDispatch, useSelector } from "react-redux";
 import { addCurrentUser } from '../../../../redux/actions/userAction';
+import Avatar from '@mui/material/Avatar';
+import PersonAdd from '@mui/icons-material/PersonAdd';
+import Settings from '@mui/icons-material/Settings';
+import Logout from '@mui/icons-material/Logout';
 
 Profile.propTypes = {
     isOpen: PropTypes.bool, // Change the type accordingly
@@ -28,7 +30,9 @@ export default function Profile(props) {
     const logout = () => {
         dispatch(addCurrentUser(null))
         localStorage.removeItem(import.meta.env.VITE_APP_AUTH_LOCAL_STORAGE_KEY)
+        handleClose()
     }
+
     console.log(currentUser);
     return (
         <div className={`absolute duration-300 ${props.isOpen ? `right-0 sm:right-72` : `right-0 sm:right-24`}`}>
@@ -40,26 +44,60 @@ export default function Profile(props) {
                 anchorEl={anchorEl}
                 open={open}
                 onClose={handleClose}
-                MenuListProps={{
-                    'aria-labelledby': 'basic-button',
+                PaperProps={{
+                    elevation: 0,
+                    sx: {
+                        overflow: 'visible',
+                        filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+                        mt: 1.5,
+                        '& .MuiAvatar-root': {
+                            width: 32,
+                            height: 32,
+                            ml: -0.5,
+                            mr: 1,
+                        },
+                        '&::before': {
+                            content: '""',
+                            display: 'block',
+                            position: 'absolute',
+                            top: 0,
+                            right: 30,
+                            width: 10,
+                            height: 10,
+                            bgcolor: 'background.paper',
+                            transform: 'translateY(-50%) rotate(45deg)',
+                            zIndex: 0,
+                        },
+                    },
                 }}
+                transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+                anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
-                <MenuList dense>
-                    <MenuItem>
-                        <ListItemText>Profile</ListItemText>
-                    </MenuItem>
-                    <Divider />
-                    <MenuItem>
-                        <ListItemText>Add space before paragraph</ListItemText>
-                    </MenuItem>
-                    <MenuItem>
-                        <ListItemText>Add space after paragraph</ListItemText>
-                    </MenuItem>
-                    <Divider />
-                    <MenuItem onClick={logout}>
-                        <ListItemText >Logout</ListItemText>
-                    </MenuItem>
-                </MenuList>
+                <MenuItem onClick={handleClose}>
+                    <Avatar /> Profile
+                </MenuItem>
+                <MenuItem onClick={handleClose}>
+                    <Avatar /> My account
+                </MenuItem>
+                <Divider />
+                <MenuItem onClick={handleClose}>
+                    <ListItemIcon>
+                        <PersonAdd fontSize="small" />
+                    </ListItemIcon>
+                    Add another account
+                </MenuItem>
+                <MenuItem onClick={handleClose}>
+                    <ListItemIcon>
+                        <Settings fontSize="small" />
+                    </ListItemIcon>
+                    Settings
+                </MenuItem>
+                <MenuItem onClick={logout}>
+                    <ListItemIcon>
+                        <Logout fontSize="small" />
+                    </ListItemIcon>
+                    Logout
+                </MenuItem>
             </Menu>
         </div>
     )
